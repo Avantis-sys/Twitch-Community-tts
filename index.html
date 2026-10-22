@@ -154,6 +154,28 @@ section { padding:55px 0; }
 *,*::before,*::after { scroll-behavior:auto!important; transition:none!important; }
 }
 </style>
+<body>
+<header>
+  <nav class="container">
+    <a class="brand" href="#top">Twitch Community <span>TTS</span> · by Avantis</a>
+    <div class="nav-links">
+      <a href="#features">Funktionen</a>
+      <a href="#download" id="navDownload">Download</a>
+    </div>
+    <button class="btn secondary" id="twitchLoginBtn" type="button">🟣 Login mit Twitch</button>
+  </nav>
+</header>
+<main id="top">
+<section class="hero container">
+  <span class="eyebrow">DEINE COMMUNITY · DEINE STIMME</span>
+  <h1>Gib deinem Twitch-Chat<br><span class="gradient">eine Stimme.</span></h1>
+  <p>Individuelle Text-to-Speech-Stimmen für deine Community – mit Twitch Community TTS · by Avantis.</p>
+  <div class="actions">
+    <button class="btn primary" id="heroDownloadBtn" type="button">Software herunterladen ↓</button>
+    <a class="btn secondary" href="#features">Funktionen entdecken</a>
+  </div>
+  <p class="hero-note">Für Windows · Free-Version verfügbar</p>
+</section>
 <section id="features" class="container">
 <h2 class="section-title">Mehr als nur <span class="gradient">Text-to-Speech.</span></h2>
 <p class="section-subtitle">Gib deiner Community eine Stimme und gestalte dein Streaming-Erlebnis persönlicher.</p>
@@ -164,21 +186,15 @@ section { padding:55px 0; }
 </div>
 </section>
 <section id="download" class="download-section">
-<div class="container">
-<div class="download-card">
-<div class="download-icon">✦</div>
-<h2 class="section-title">Bereit für <span class="gradient">deinen Stream?</span></h2>
-<p>Twitch Community TTS · by Avantis<br>Windows-Download</p>
-<a class="btn secondary"
-   href="https://github.com/Avantis-sys/Twitch-Community-tts/releases/download/v1.1.0/Twitch-Community-TTS-Setup.exe"
-   download>
-   Twitch Community TTS herunterladen
-</a>
-<div>
-  <span class="notice">Windows · Offizieller GitHub-Download</span>
-</div>
-</div>
-</div>
+  <div class="container">
+    <div class="download-card">
+      <div class="download-icon">✦</div>
+      <h2 class="section-title">Wähle deinen <span class="gradient">Plan.</span></h2>
+      <p>Wähle die passende Version für deine Twitch-Community.</p>
+      <button class="btn primary" id="openPlansBtn" type="button">Download & Abos anzeigen</button>
+      <div><span class="notice">Free-Download verfügbar · Premium folgt später</span></div>
+    </div>
+  </div>
 </section>
   <section id="funktionen" style="padding:70px 20px; background:linear-gradient(180deg,#100d1c,#171126); color:#f5f1ff; font-family:Arial,sans-serif;">
   <div style="max-width:1050px;margin:auto;">
@@ -213,6 +229,88 @@ section { padding:55px 0; }
   </div>
 </section>
 </main>
+<div class="modal-backdrop" id="plansModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="plansTitle">
+    <button class="modal-close" data-close="plansModal" aria-label="Schließen">×</button>
+    <span class="eyebrow">DOWNLOAD CENTER</span>
+    <h2 id="plansTitle" class="section-title">Wähle deinen <span class="gradient">Plan.</span></h2>
+    <p class="modal-subtitle">Free ist sofort verfügbar. Premium und Unlimited sind noch nicht freigeschaltet.</p>
+    <div class="plans-grid">
+      <article class="plan-card">
+        <div class="plan-label">START</div><h3>Free</h3><div class="price">0,00 € <small>/ Monat</small></div>
+        <ul><li>10 Stimmen</li><li>Grundfunktionen</li><li>Sofort verfügbar</li></ul>
+        <a class="btn primary plan-button" href="https://github.com/Avantis-sys/Twitch-Community-tts/releases/download/v1.1.0/Twitch-Community-TTS-Setup.exe">Jetzt installieren</a>
+      </article>
+      <article class="plan-card featured-plan">
+        <div class="plan-label">PREMIUM</div><h3>Premium</h3><div class="price">9,99 € <small>/ Monat</small></div>
+        <ul><li>50 Stimmen</li><li>Für größere Communities</li><li>Kommt bald</li></ul>
+        <button class="btn primary plan-button coming-soon" type="button">Jetzt kaufen</button>
+      </article>
+      <article class="plan-card">
+        <div class="plan-label">MAXIMUM</div><h3>Unlimited</h3><div class="price">19,99 € <small>/ Monat</small></div>
+        <ul><li>Unbegrenzte Stimmen</li><li>Für große Streams</li><li>Kommt bald</li></ul>
+        <button class="btn secondary plan-button coming-soon" type="button">Jetzt kaufen</button>
+      </article>
+    </div>
+    <div class="discount-box">
+      <h3>Rabattcode</h3>
+      <p>Du hast einen Rabattcode? Die Code-Prüfung wird später aktiviert.</p>
+      <div class="discount-row"><input id="discountCode" type="text" placeholder="Rabattcode eingeben" aria-label="Rabattcode"><button class="btn secondary" id="applyDiscount" type="button">Anwenden</button></div>
+      <p class="discount-feedback" id="discountFeedback" aria-live="polite"></p>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop" id="infoModal" aria-hidden="true">
+  <div class="modal info-modal" role="dialog" aria-modal="true" aria-labelledby="infoTitle">
+    <button class="modal-close" data-close="infoModal" aria-label="Schließen">×</button>
+    <div class="download-icon">✦</div>
+    <h2 id="infoTitle">Coming soon</h2>
+    <p id="infoText">Diese Funktion wird bald verfügbar sein.</p>
+    <button class="btn primary" data-close="infoModal" type="button">Alles klar</button>
+  </div>
+</div>
+<style>
+#twitchLoginBtn { white-space:nowrap; cursor:pointer; color:var(--text); }
+button { font:inherit; cursor:pointer; }
+.modal-backdrop { position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(5,3,12,.82); backdrop-filter:blur(10px); overflow-y:auto; }
+.modal-backdrop.open { display:flex; }
+.modal { position:relative; width:min(100%,980px); max-height:92vh; overflow-y:auto; padding:32px; border:1px solid rgba(168,85,247,.45); border-radius:22px; background:linear-gradient(145deg,#1b1230,#0e0919); box-shadow:0 25px 100px #0009; }
+.modal-close { position:absolute; top:12px; right:16px; border:0; background:transparent; color:var(--muted); font-size:30px; }
+.modal-subtitle { text-align:center; color:var(--muted); margin-bottom:28px; }
+.plans-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; text-align:left; }
+.plan-card { display:flex; flex-direction:column; padding:22px; border:1px solid var(--border); border-radius:16px; background:rgba(255,255,255,.025); }
+.featured-plan { border-color:#a855f7; box-shadow:0 0 25px #9333ea22; }
+.plan-label { color:var(--green); font-size:11px; letter-spacing:1.5px; font-weight:800; }
+.plan-card h3 { font-size:24px; margin:8px 0; }
+.price { font-size:26px; font-weight:800; }
+.price small { font-size:12px; color:var(--muted); font-weight:400; }
+.plan-card ul { color:var(--muted); padding-left:18px; min-height:100px; font-size:14px; }
+.plan-button { width:100%; margin-top:auto; cursor:pointer; }
+.discount-box { margin-top:22px; padding:20px; border:1px solid var(--border); border-radius:15px; }
+.discount-box h3 { margin:0; }
+.discount-box p { color:var(--muted); font-size:13px; }
+.discount-row { display:flex; gap:10px; }
+.discount-row input { min-width:0; flex:1; padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:#0b0715; color:var(--text); }
+.discount-feedback { margin-bottom:0; }
+.info-modal { width:min(100%,440px); text-align:center; }
+.info-modal .section-title { font-size:30px; }
+@media(max-width:760px) { .plans-grid { grid-template-columns:1fr; } .plan-card ul { min-height:0; } .modal { padding:28px 18px; } nav { flex-wrap:wrap; padding:12px 0; } .nav-links { order:3; width:100%; justify-content:center; } #twitchLoginBtn { font-size:12px; padding:10px 12px; } }
+</style>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const openModal = id => { const el=$(id); el.classList.add('open'); el.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+  const closeModal = id => { const el=$(id); el.classList.remove('open'); el.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+  ['heroDownloadBtn','openPlansBtn'].forEach(id => $(id)?.addEventListener('click',()=>openModal('plansModal')));
+  $('navDownload')?.addEventListener('click', e => { e.preventDefault(); openModal('plansModal'); });
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>closeModal(b.dataset.close)));
+  document.querySelectorAll('.modal-backdrop').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)closeModal(m.id)}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-backdrop.open').forEach(m=>closeModal(m.id));});
+  document.querySelectorAll('.coming-soon').forEach(b=>b.addEventListener('click',()=>{closeModal('plansModal'); $('infoTitle').textContent='Coming soon'; $('infoText').textContent='Der Kauf dieses Abos ist noch nicht freigeschaltet. Es wird noch keine Zahlung ausgelöst.'; openModal('infoModal');}));
+  $('twitchLoginBtn')?.addEventListener('click',()=>{ $('infoTitle').textContent='Login mit Twitch'; $('infoText').textContent='Der Twitch-Login benötigt noch eine registrierte Twitch-Anwendung (Client ID) und die passende HTTPS-Weiterleitungsadresse. Sobald diese eingerichtet sind, kann der echte Login aktiviert werden.'; openModal('infoModal'); });
+  $('applyDiscount')?.addEventListener('click',()=>{ const v=$('discountCode').value.trim(); $('discountFeedback').textContent=v?'Die Rabattcode-Prüfung ist noch nicht aktiviert.':'Bitte gib zuerst einen Rabattcode ein.'; });
+})();
+</script>
   <footer>
 <div class="container footer-inner">
 <span>© 2026 Avantis · Twitch Community TTS</span>
